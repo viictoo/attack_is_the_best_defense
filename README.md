@@ -1,7 +1,9 @@
 
 0. ARP spoofing and sniffing unencrypted traffic
 #advanced
+
 ![Project Logo](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2020/9/01c5a1e3f29d290b188d34be5cf534d3255058a7.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230921%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230921T070217Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=1574ec30705d1a7f9fd9af02b5208dc2a35340d68422c8471e76abf2efeb80a0)
+
 Security is a vast topic, and network security is an important part of it. A lot of very sensitive information goes over networks that are used by many people, and some people might have bad intentions. Traffic going through a network can be intercepted by a malicious machine pretending to be another network device. Once the traffic is redirected to the malicious machine, the hacker can keep a copy of it and analyze it for potential interesting information. It is important to note that the traffic must then be forwarded to the actual device it was supposed to go (so that users and the system keep going as if nothing happened).
 
 Any information that is not encrypted and sniffed by an attacker can be seen by the attacker - that could be your email password or credit card information. While today’s network security is much stronger than it used to be, there are still some legacy systems that are using unencrypted communication means. A popular one is telnet.
@@ -23,7 +25,7 @@ EHLO ismtpd0013p1las1.sendgrid.net
 250-STARTTLS
 250-AUTH PLAIN LOGIN
 250 AUTH=PLAIN LOGIN
-auth login           
+auth login
 334 VXNlcm5hbWU6
 VGhpcyBpcyBteSBsb2dpbg==
 334 UGFzc3dvcmQ6
@@ -45,23 +47,23 @@ I am sending you this email from a Terminal.
 quit
 221 See you later
 Connection closed by foreign host.
-sylvain@ubuntu$ 
+sylvain@ubuntu$
 ```
 I wrote the script user_authenticating_into_server that performs the authentication steps that I just showed above. Your mission is to execute user_authenticating_into_server locally on your machine and, using tcpdump, sniff the network to find my password. Once you find it, paste the password in your answer file. This script will not work on a Docker container or Mac OS, use your Ubuntu vagrant machine or any other Linux machine.
 
 You can download the script user_authenticating_into_server here
 
 DISCLAIMER: you will probably see Authentication failed: Bad username / password in the tcpdump trace. It’s normal, we deleted the user to our Sendgrid account. You can’t verify the password found via Sendgrid, only the correction system can!
-	    
+
 # 1. Dictionary attack
 #advanced
 
-	    Password-based authentication systems can be easily broken by using a dictionary attack (you’ll have to find your own password dictionary). Let’s try it on an SSH account.
+Password-based authentication systems can be easily broken by using a dictionary attack (you’ll have to find your own password dictionary). Let’s try it on an SSH account.
 
-	        Install Docker on your machine Ubuntu
-		    Pull and run the Docker image sylvainkalache/264-1 with the command docker run -p 2222:22 -d -ti sylvainkalache/264-1
-		        Find a password dictionary (you might need multiple of them)
-	    Install and use hydra to try to brute force the account sylvain via SSH on the Docker container
-	        Because the Docker container is running locally, hydra should access the SSH account via IP 127.0.0.1 and port 2222
-		    Hint: the password is 11 characters long
+	Install Docker on your machine Ubuntu
+	Pull and run the Docker image sylvainkalache/264-1 with the command docker run -p 2222:22 -d -ti sylvainkalache/264-1
+	Find a password dictionary (you might need multiple of them)
+	Install and use hydra to try to brute force the account sylvain via SSH on the Docker container
+	Because the Docker container is running locally, hydra should access the SSH account via IP 127.0.0.1 and port 2222
+	Hint: the password is 11 characters long
 
